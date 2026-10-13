@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Подарок для Кемеңгера 🎁</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fffaf3;
+      --bg-2: #fff1d6;
+      --card: #ffffff;
+      --card-soft: #fffdf9;
+      --gold: #f5b93d;
+      --gold-deep: #d98900;
+      --gold-soft: #fff1bb;
+      --sun: #ffd76a;
+      --ink: #2d241c;
+      --muted: #7e6953;
+      --line: #f0dfc4;
+      --pink: #ff7ab6;
+      --blue: #7ab8ff;
+      --green: #4dbb8e;
+      --shadow: 0 18px 40px rgba(223, 171, 64, 0.16);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 194, 93, 0.18), transparent 26%),
+        radial-gradient(circle at top right, rgba(255, 122, 182, 0.08), transparent 22%),
+        linear-gradient(180deg, #fffdf8 0%, var(--bg) 100%);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 215, 106, 0.1), transparent 20%),
+        radial-gradient(circle at 85% 12%, rgba(122, 184, 255, 0.03), transparent 18%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 250, 243, 0.76);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold), #ffcc66);
+      box-shadow: 0 12px 24px rgba(245, 185, 61, 0.25);
+      font-size: 22px;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover { color: var(--gold-deep); }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 18px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, #ffffff, #fffaf2);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chest-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 180px;
+    }
+
+    .chest {
+      position: relative;
+      width: 150px;
+      height: 126px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fffdf8, #fce7b4);
+      border: 2px solid rgba(245, 185, 61, 0.45);
+      box-shadow: inset 0 0 0 6px rgba(255,255,255,0.7), 0 18px 30px rgba(245, 185, 61, 0.15);
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .chest-lid {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: -28px;
+      height: 52px;
+      background: linear-gradient(135deg, #ffd76a, #f5b93d);
+      border-radius: 12px 12px 10px 10px;
+      border: 2px solid rgba(217, 137, 0, 0.2);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      box-shadow: 0 10px 12px rgba(245, 185, 61, 0.15);
+      transform-origin: center bottom;
+      transition: transform 0.7s ease;
+    }
+
+    .chest-body {
+      position: absolute;
+      inset: 26px 18px 18px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.7);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: #c78b1c;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid var(--line);
+      background: var(--gold-soft);
+      color: var(--gold-deep);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      font-size: clamp(30px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 .gold {
+      background: linear-gradient(135deg, #f6c75c, #d98900);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 600px;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .count-item {
+      min-width: 72px;
+      background: linear-gradient(180deg, #fffefb, #fff7e4);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 10px 8px 8px;
+      text-align: center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6);
+    }
+
+    .count-item strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold-deep);
+      letter-spacing: -0.04em;
+    }
+
+    .count-item span {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .panel h3 {
+      font-size: 20px;
+      margin-bottom: 6px;
+      letter-spacing: -0.04em;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .balance-box {
+      margin: 16px 0 12px;
+      background: linear-gradient(135deg, #fffefb, #fff3d3);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .coin {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffe082, #f5b93d);
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      box-shadow: 0 12px 22px rgba(245, 185, 61, 0.22);
+    }
+
+    .balance-box .label {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gold-deep);
+    }
+
+    .balance-box strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1.1;
+      letter-spacing: -0.06em;
+    }
+
+    .progress {
+      margin-top: 12px;
+      background: #f7ebd2;
+      border-radius: 999px;
+      height: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(245,185,61,0.25);
+      position: relative;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ffd76a, #f5b93d, #d98900);
+      transition: width 0.35s ease;
+    }
+
+    .progress-meta {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    form { margin-top: 18px; }
+
+    label {
+      display: block;
+      margin: 12px 0 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: var(--card-soft);
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 13px 14px;
+      font: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input::placeholder, textarea::placeholder { color: #b2997e; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(245, 185, 61, 0.12);
+    }
+
+    textarea { resize: vertical; min-height: 90px; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .money-choice {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: var(--card-soft);
+      border-radius: 14px;
+      margin-top: 8px;
+    }
+
+    .money-choice label {
+      margin: 0;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: 700;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.primary {
+      width: 100%;
+      margin-top: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      box-shadow: 0 14px 28px rgba(245, 185, 61, 0.28);
+    }
+
+    .btn.primary:hover {
+      box-shadow: 0 18px 34px rgba(245, 185, 61, 0.34);
+    }
+
+    .btn.secondary {
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .message {
+      display: none;
+      margin-top: 12px;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .message.show { display: block; }
+
+    .message.ok {
+      background: #ebfff5;
+      color: #0e7d5a;
+      border-color: rgba(77, 187, 142, 0.28);
+    }
+
+    .message.error {
+      background: #fff2f3;
+      color: #b93d4d;
+      border-color: rgba(255, 122, 182, 0.22);
+    }
+
+    .wish-list {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .wish-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto auto;
+      gap: 12px;
+      align-items: center;
+      background: linear-gradient(180deg, #fffdf9, #fffaf0);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 12px;
+      animation: slideUp 0.25s ease;
+    }
+
+    .gift-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #fff1bb, #ffe6a1);
+      border: 1px solid rgba(245,185,61,0.2);
+      font-size: 24px;
+    }
+
+    .wish-main {
+      min-width: 0;
+    }
+
+    .wish-title {
+      font-weight: 800;
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .wish-note {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 4px;
+      overflow-wrap: anywhere;
+    }
+
+    .wish-price {
+      font-weight: 800;
+      color: var(--gold-deep);
+      white-space: nowrap;
+      font-size: 15px;
+      padding-right: 6px;
+    }
+
+    .remove-btn {
+      border: 1px solid rgba(255, 122, 182, 0.25);
+      background: #fff8fb;
+      color: #b55a80;
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .empty {
+      padding: 28px 14px;
+      text-align: center;
+      color: var(--muted);
+      background: linear-gradient(180deg, #fffaf3, #fff);
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+    }
+
+    .empty .emoji {
+      font-size: 42px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .summary {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #fff8d5, #fff2c1);
+      border: 1px solid rgba(245,185,61,0.26);
+      color: #5f4b36;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .summary strong {
+      color: var(--gold-deep);
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .badge {
+      background: linear-gradient(180deg, #fffefb, #fff5d9);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .badge.unlocked {
+      background: linear-gradient(135deg, #f8da66, #f5b93d);
+      color: #644810;
+      border-color: rgba(245,185,61,0.24);
+    }
+
+    .sync-box {
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .sync-box label {
+      margin-top: 10px;
+    }
+
+    .sync-status {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .btn.small {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(31, 24, 18, 0.58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+      transition: opacity 0.35s ease;
+    }
+
+    .overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .overlay-card {
+      width: min(520px, calc(100vw - 20px));
+      background: linear-gradient(180deg, #fffdf8, #fff7e4);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 22px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    .overlay-card .title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 40px);
+      margin-bottom: 8px;
+      letter-spacing: -0.05em;
+    }
+
+    .overlay-card .desc {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 15px;
+    }
+
+    .overlay-card .close-btn {
+      border: none;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: white;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(245, 185, 61, 0.2);
+    }
+
+    .share-modal {
+      position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1200;
+      width: min(720px, calc(100vw - 28px));
+      background: #fffdf8; border-radius: 16px; border: 1px solid var(--line); padding: 18px; box-shadow: 0 24px 60px rgba(0,0,0,0.12);
+    }
+
+    .share-modal .url {
+      width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: #fff; margin-top: 10px; font-size: 13px;
+    }
+
+    .share-modal .controls { display:flex; gap:8px; margin-top:12px; justify-content:flex-end; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 850px) {
+      .grid { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .countdown { justify-content: center; }
+      .nav { padding: 12px 16px; }
+      nav { gap: 12px; font-size: 12px; }
+    }
+
+    @media (max-width: 560px) {
+      .field-row { grid-template-columns: 1fr; }
+      .wish-item { grid-template-columns: 48px 1fr auto; }
+      .wish-item .remove-btn { grid-column: 2 / -1; }
+      .balance-box { flex-direction: column; align-items: flex-start; }
+      .brand { font-size: 16px; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="confetti"></canvas>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-mark">🎁</div>
+        <div>Подарок для Кемеңгера</div>
+      </div>
+
+      <nav>
+        <a href="#home">Главная</a>
+        <a href="#wishes">Желания</a>
+        <a href="#balance">Баланс</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Opening overlay -->
+  <div class="overlay" id="overlay">
+    <div class="overlay-card">
+      <div class="brand-mark" style="margin: 0 auto 8px; width: 68px; height: 68px; font-size: 34px;">🎉</div>
+      <div class="title">С Днём Рождения, Кемеңгер!</div>
+      <div class="desc">Пусть каждый день будет как уровень в игре — яркий, удачный и с победами. Нажми на кнопку — и откроем сундук с мечтами.</div>
+      <button class="close-btn" id="openChest">Открыть сундук</button>
+    </div>
+  </div>
+
+  <!-- Share modal (hidden by default) -->
+  <div id="shareModal" style="display:none">
+    <div class="share-modal" role="dialog" aria-modal="true" aria-label="Ссылка для обмена">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="brand-mark" style="width:48px;height:48px;font-size:22px">🔗</div>
+        <div style="font-weight:800">Поделиться списком желаний</div>
+      </div>
+      <div style="margin-top:10px;color:var(--muted)">Скопируй ссылку или используй кнопку «Поделиться» (работает на мобильных устройствах).</div>
+      <input id="shareUrl" class="url" readonly>
+      <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+        <button id="copyShare" class="btn secondary small">Копировать</button>
+        <button id="webShare" class="btn secondary small">Поделиться</button>
+        <button id="closeShare" class="btn small" style="background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="home">
+    <section class="hero">
+      <div class="chest-wrap">
+        <div class="chest" aria-label="сундук">
+          <div class="chest-lid" id="chestLid">OPEN</div>
+          <div class="chest-body">🎁</div>
+        </div>
+      </div>
+
+      <div class="hero-copy">
+        <div class="eyebrow">Игровой подарок</div>
+        <h1>С Днём Рождения,<br><span class="gold">Кемеңгер!</span></h1>
+        <p>Желаю тебе побед, ярких моментов, новых рекордов и крутых побед в играх, спорте и жизни. Пусть всё, что ты мечтаешь, сбудется так же красиво, как лучший уровень в любимой игре.</p>
+
+        <div class="countdown" aria-label="таймер до дня рождения">
+          <div class="count-item"><strong id="days">0</strong><span>Дней</span></div>
+          <div class="count-item"><strong id="hours">0</strong><span>Час.</span></div>
+          <div class="count-item"><strong id="mins">0</strong><span>Мин.</span></div>
+          <div class="count-item"><strong id="secs">0</strong><span>Сек.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <h3>Добавить желание</h3>
+        <div class="sub">Выбери тип подарка и добавь мечту в список</div>
+
+        <div class="balance-box" id="balance">
+          <div class="coin">🪙</div>
+          <div>
+            <div class="label">Бюджет</div>
+            <strong id="balanceValue">10 000 ₸</strong>
+          </div>
+        </div>
+
+        <div class="progress" aria-label="прогресс баланса">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-meta">
+          <span>Использовано</span>
+          <span id="progressLabel">0 ₸</span>
+        </div>
+
+        <form id="wishForm">
+          <label for="type">Тип подарка</label>
+          <select id="type">
+            <option value="clothes">Одежда</option>
+            <option value="games">Донат в игру</option>
+            <option value="money">Деньги</option>
+            <option value="other">Другое</option>
+          </select>
+
+          <label for="name">Название подарка *</label>
+          <input id="name" type="text" maxlength="120" placeholder="Например: новая футбольная форма, донат в Fortnite, кроссовки..." required>
+
+          <div id="gameFields" style="display:none;">
+            <label for="game">Название игры / платформа</label>
+            <input id="game" type="text" maxlength="80" placeholder="Например: Roblox / PC">
+          </div>
+
+          <div class="field-row" style="margin-top: 2px;">
+            <div>
+              <label for="note">Почему хочешь?</label>
+              <input id="note" type="text" maxlength="180" placeholder="Например: давно мечтаю">
+            </div>
+            <div>
+              <label for="price">Примерная цена (₸)</label>
+              <input id="price" type="number" min="0" step="100" placeholder="8500">
+            </div>
+          </div>
+
+          <label>Способ получения денег</label>
+          <div class="money-choice">
+            <label><input type="radio" name="moneyMethod" value="cash" checked> Наличные</label>
+            <label><input type="radio" name="moneyMethod" value="transfer"> Перевод на карту</label>
+          </div>
+
+          <label for="autoWa">Уведомление родителю</label>
+          <div class="money-choice" style="padding: 12px 14px;">
+            <label><input type="checkbox" id="autoWa" checked> Автооткрытие WhatsApp</label>
+          </div>
+
+          <button class="btn primary" type="submit">➤ Добавить в список</button>
+          <div class="message" id="message" role="status"></div>
+        </form>
+      </section>
+
+      <aside class="panel">
+        <h3>Достижения</h3>
+        <div class="sub">Игровые награды за активность</div>
+        <div class="badges" id="badges">
+          <div class="badge">🏁 Новичок</div>
+          <div class="badge">🎯 В мечтах</div>
+          <div class="badge">⚡ Победитель</div>
+        </div>
+
+        <div class="sync-box">
+          <h3 style="margin-bottom: 10px;">Синхронизация</h3>
+          <div class="sub">Чтобы видеть желания удалённо — можно подключить Supabase</div>
+
+          <label for="supabaseUrl">Supabase URL</label>
+          <input id="supabaseUrl" type="text" placeholder="https://xxx.supabase.co">
+
+          <label for="supabaseKey">Public anon key</label>
+          <input id="supabaseKey" type="text" placeholder="eyJ...">
+
+          <div class="toolbar">
+            <button type="button" id="enableSync" class="btn secondary small">Подключить</button>
+            <button type="button" id="pullSync" class="btn secondary small">Загрузить</button>
+          </div>
+
+          <div class="sync-status" id="syncStatus">Статус: локально / без облака</div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="panel" id="wishes" style="margin-top: 22px;">
+      <h3>Список желаний</h3>
+      <div class="sub">Все подарки, которые добавил Кемеңгер</div>
+
+      <div class="toolbar" style="margin-top: 14px;">
+        <button type="button" class="btn secondary small" id="shareWa">Отправить в WhatsApp</button>
+        <button type="button" class="btn secondary small" id="genLink">Создать ссылку</button>
+        <button type="button" class="btn secondary small" id="copyList">Копировать</button>
+        <button type="button" class="btn secondary small" id="exportList">Экспорт JSON</button>
+        <button type="button" class="btn secondary small" id="importBtn">Импорт JSON</button>
+      </div>
+
+      <div class="wish-list" id="wishList">
+        <div class="empty">
+          <span class="emoji">💭</span>
+          Пока здесь пусто. Добавь свой первый подарок!
+        </div>
+      </div>
+
+      <div class="summary" id="summaryBox">
+        Сумма указанных цен: <strong>0 ₸</strong>. Пока всё в пределах бюджета.
+      </div>
+    </section>
+  </main>
+
+  <footer>С любовью, от брата ♥ Пусть мечты сбываются!</footer>
+
+  <!-- Supabase (UMD) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+
+  <script>
+    /* ====== Конфигурация ====== */
+    const START_BALANCE = 10000;
+    const BIRTHDAY_TARGET = new Date('2026-10-16T00:00:00+06:00'); // Астана / Asia/Almaty
+    const STORAGE_KEY = 'brother_birthday_wishes_v2';
+    const SYNC_KEY = 'brother_supabase_config_v2';
+    const PARENT_PHONE = '77072669429';
+
+    /* ====== DOM ====== */
+    const form = document.getElementById('wishForm');
+    const wishList = document.getElementById('wishList');
+    const summaryBox = document.getElementById('summaryBox');
+    const message = document.getElementById('message');
+    const typeEl = document.getElementById('type');
+    const nameEl = document.getElementById('name');
+    const noteEl = document.getElementById('note');
+    const priceEl = document.getElementById('price');
+    const gameFields = document.getElementById('gameFields');
+    const gameEl = document.getElementById('game');
+    const autoWa = document.getElementById('autoWa');
+    const badgesEl = document.getElementById('badges');
+    const overlay = document.getElementById('overlay');
+    const openChestBtn = document.getElementById('openChest');
+    const chestLid = document.getElementById('chestLid');
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const balanceValue = document.getElementById('balanceValue');
+
+    const supabaseUrl = document.getElementById('supabaseUrl');
+    const supabaseKey = document.getElementById('supabaseKey');
+    const syncStatus = document.getElementById('syncStatus');
+
+    const genLinkBtn = document.getElementById('genLink');
+    const shareModal = document.getElementById('shareModal');
+    const shareUrlInput = document.getElementById('shareUrl');
+    const copyShareBtn = document.getElementById('copyShare');
+    const webShareBtn = document.getElementById('webShare');
+    const closeShareBtn = document.getElementById('closeShare');
+
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minsEl = document.getElementById('mins');
+    const secsEl = document.getElementById('secs');
+
+    /* ====== State ====== */
+    let wishes = [];
+    let supabaseClient = null;
+    let syncEnabled = false;
+
+    /* ====== Utils ====== */
+    function money(n) {
+      return new Intl.NumberFormat('ru-RU').format(Math.max(0, Number(n) || 0)) + ' ₸';
+    }
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = 'message show ' + (type === 'error' ? 'error' : 'ok');
+    }
+
+    function saveLocal() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes)); } catch {}
+    }
+    function loadLocal() {
+      try { const raw = localStorage.getItem(STORAGE_KEY); wishes = raw ? JSON.parse(raw) : []; if (!Array.isArray(wishes)) wishes = []; } catch { wishes = []; }
+    }
+
+    /* ====== Share encoding (client-side, URL-safe via base64) ======
+       We use: encoded = btoa(unescape(encodeURIComponent(json)))
+       decode: json = decodeURIComponent(escape(atob(encoded)))
+       This is a common approach for UTF-8 strings in browsers.
+    */
+    function encodeWishes(obj) {
+      const json = JSON.stringify(obj);
+      try {
+        return btoa(unescape(encodeURIComponent(json)));
+      } catch (e) {
+        // fallback
+        return btoa(json);
+      }
+    }
+    function decodeWishes(encoded) {
+      try {
+        const json = decodeURIComponent(escape(atob(encoded)));
+        return JSON.parse(json);
+      } catch (e) {
+        try { return JSON.parse(atob(encoded)); } catch { return null; }
+      }
+    }
+
+    function generateShareUrl() {
+      if (!wishes || wishes.length === 0) {
+        showMessage('Список пуст — нечего отправлять.', 'error');
+        return null;
+      }
+      const encoded = encodeWishes(wishes);
+      const url = location.origin + location.pathname + '?share=' + encodeURIComponent(encoded);
+      return url;
+    }
+
+    function openShareModal(url) {
+      shareUrlInput.value = url;
+      shareModal.style.display = 'block';
+      // small autofocus/select
+      setTimeout(() => shareUrlInput.select(), 50);
+    }
+    function closeShareModal() {
+      shareModal.style.display = 'none';
+    }
+
+    /* ====== UI rendering ====== */
+    function updateBalanceUI() {
+      const total = wishes.reduce((s, w) => s + (Number(w.price) || 0), 0);
+      const percent = Math.min((total / START_BALANCE) * 100, 100);
+      progressFill.style.width = percent + '%';
+      progressLabel.textContent = money(total);
+      balanceValue.textContent = money(Math.max(START_BALANCE - total,0)) + ' / ' + money(START_BALANCE);
+    }
+
+    function renderBadges() {
+      const count = wishes.length;
+      const unlocked = [
+        { label: '🏁 Новичок', unlocked: count >= 1 },
+        { label: '🎯 В мечтах', unlocked: count >= 3 },
+        { label: '⚡ Победитель', unlocked: count >= 5 }
+      ];
+      badgesEl.innerHTML = '';
+      unlocked.forEach(item => {
+        const badge = document.createElement('div');
+        badge.className = 'badge' + (item.unlocked ? ' unlocked' : '');
+        badge.textContent = item.label;
+        badgesEl.appendChild(badge);
+      });
+    }
+
+    function renderList() {
+      renderBadges();
+      if (!wishes.length) {
+        wishList.innerHTML = `
+          <div class="empty">
+            <span class="emoji">💭</span>
+            Пока здесь пусто. Добавь свой первый подарок!
+          </div>`;
+        summaryBox.innerHTML = 'Сумма указанных цен: <strong>0 ₸</strong>. Пока всё в пределах бюджета.';
+        updateBalanceUI();
+        return;
+      }
+
+      const total = wishes.reduce((s, w) => s + (Number(w.price) || 0), 0);
+      const known = wishes.filter(w => w.price !== null && w.price !== '').length;
+
+      if (known === 0) {
+        summaryBox.innerHTML = 'Сумма указанных цен: <strong>0 ₸</strong>. Укажи цены, чтобы сравнить с бюджетом.';
+      } else if (total <= START_BALANCE) {
+        summaryBox.innerHTML = 'Сумма указанных цен: <strong>' + money(total) + '</strong>. В пределах баланса 10 000 ₸ 🎉';
+      } else {
+        summaryBox.innerHTML = 'Сумма указанных цен: <strong>' + money(total) + '</strong>. Это больше баланса на <strong>' + money(total - START_BALANCE) + '</strong>.';
+      }
+
+      wishList.innerHTML = '';
+      wishes.forEach((wish, i) => {
+        const row = document.createElement('div');
+        row.className = 'wish-item';
+
+        const mark = document.createElement('div');
+        mark.className = 'gift-mark';
+        mark.textContent = wish.type === 'games' ? '🎮' : wish.type === 'money' ? '💸' : wish.type === 'clothes' ? '👕' : '🎁';
+
+        const main = document.createElement('div');
+        main.className = 'wish-main';
+        const title = document.createElement('div');
+        title.className = 'wish-title';
+        title.textContent = wish.name;
+        const note = document.createElement('div');
+        note.className = 'wish-note';
+        note.textContent = wish.note || (wish.type === 'games' ? (wish.game || 'Игровой донат') : 'Это желание понравится!');
+        main.appendChild(title);
+        if (wish.note || wish.game || wish.type === 'games') main.appendChild(note);
+
+        const price = document.createElement('div');
+        price.className = 'wish-price';
+        price.textContent = (wish.price === null || wish.price === '') ? 'Цена не указана' : money(wish.price);
+
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'remove-btn';
+        remove.textContent = 'Удалить';
+        remove.addEventListener('click', () => {
+          wishes.splice(i, 1);
+          saveLocal();
+          renderList();
+        });
+
+        row.append(mark, main, price, remove);
+        wishList.appendChild(row);
+      });
+
+      updateBalanceUI();
+    }
+
+    /* ====== Share / import from URL on load ====== */
+    function handleIncomingShare() {
+      const params = new URLSearchParams(location.search);
+      if (!params.has('share')) return;
+      const encoded = params.get('share');
+      const decoded = decodeWishes(encoded);
+      if (!decoded || !Array.isArray(decoded)) return;
+
+      // Show preview overlay with import option
+      const previewOverlay = document.createElement('div');
+      previewOverlay.className = 'overlay';
+      previewOverlay.style.zIndex = 1300;
+      previewOverlay.innerHTML = `
+        <div class="overlay-card" role="dialog" aria-modal="true" style="max-width:760px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="brand-mark" style="width:54px;height:54px;font-size:26px">🔗</div>
+            <div style="font-weight:800">Просмотр списка по ссылке</div>
+          </div>
+          <p style="margin-top:10px" class="desc">Открыт список желаний, полученный по ссылке. Ты можешь просмотреть его или импортировать в свой список.</p>
+          <div id="previewList" style="text-align:left;max-height:320px;overflow:auto;margin-top:8px;padding:8px;border-radius:12px;background:#fffefb;border:1px solid var(--line)"></div>
+          <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+            <button id="importShare" class="btn secondary small">Импортировать в мои</button>
+            <button id="copyShareLink" class="btn secondary small">Копировать ссылку</button>
+            <button id="closePreview" class="btn" style="background:linear-gradient(135deg,var(--gold),var(--gold-deep));color:#fff">Закрыть</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(previewOverlay);
+
+      const previewList = previewOverlay.querySelector('#previewList');
+      previewList.innerHTML = decoded.length ? decoded.map((w,i) => `<div style="padding:8px;border-bottom:1px solid var(--line)"><strong>${i+1}. ${w.name}</strong><div style="color:${'#6b5a2e'}">${w.price ? money(w.price) : 'Цена не указана'} ${w.note ? ' • ' + w.note : ''}</div></div>`).join('') : '<div class="muted">Пустой список</div>';
+
+      previewOverlay.querySelector('#closePreview').addEventListener('click', () => {
+        previewOverlay.remove();
+        // remove share param from URL (so preview won't show on reload)
+        history.replaceState(null, '', location.pathname);
+      });
+
+      previewOverlay.querySelector('#copyShareLink').addEventListener('click', () => {
+        const url = location.href;
+        navigator.clipboard.writeText(url).then(()=> showMessage('Ссылка скопирована', 'ok'), ()=> showMessage('Не удалось скопировать', 'error'));
+      });
+
+      previewOverlay.querySelector('#importShare').addEventListener('click', () => {
+        // merge or replace? We'll prompt: append to existing
+        wishes = decoded.concat(wishes);
+        saveLocal();
+        renderList();
+        previewOverlay.remove();
+        history.replaceState(null, '', location.pathname);
+        showMessage('Список импортирован в локальное хранилище', 'ok');
+      });
+    }
+
+    /* ====== Generate / copy / webshare handlers ====== */
+    genLinkBtn.addEventListener('click', () => {
+      const url = generateShareUrl();
+      if (!url) return;
+      openShareModal(url);
+    });
+    copyShareBtn && copyShareBtn.addEventListener('click', () => {
+      const url = shareUrlInput.value;
+      navigator.clipboard.writeText(url).then(() => showMessage('Ссылка скопирована в буфер', 'ok'), () => showMessage('Не удалось скопировать', 'error'));
+    });
+    webShareBtn && webShareBtn.addEventListener('click', async () => {
+      const url = shareUrlInput.value;
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: 'Список желаний Кемеңгера', text: 'Посмотри список желаний', url });
+        } catch (e) { /* пользователь отменил или ошибка */ }
+      } else {
+        // fallback: open copy dialog
+        navigator.clipboard.writeText(url).then(() => showMessage('Ссылка скопирована в буфер', 'ok'), () => showMessage('Не удалось скопировать', 'error'));
+      }
+    });
+    closeShareBtn && closeShareBtn.addEventListener('click', () => closeShareModal());
+
+    /* ====== Other actions: share to WhatsApp, copy, export/import JSON ====== */
+    document.getElementById('shareWa').addEventListener('click', () => {
+      const text = wishes.length
+        ? wishes.map((w, i) => `${i + 1}. ${w.name}${w.price ? ' — ' + money(w.price) : ''}${w.note ? ' | ' + w.note : ''}`).join('\n')
+        : 'Пока список желаний пустой';
+      const encoded = encodeURIComponent('Подарок для Кемеңгера\n\n' + text + '\n\nС любовью, от брата ❤️');
+      const url = `https://wa.me/${PARENT_PHONE}?text=${encoded}`;
+      window.open(url, '_blank');
+    });
+
+    document.getElementById('copyList').addEventListener('click', () => {
+      const text = wishes.length
+        ? wishes.map((w, i) => `${i + 1}. ${w.name}${w.price ? ' — ' + money(w.price) : ''}${w.note ? ' | ' + w.note : ''}`).join('\n')
+        : 'Пока список желаний пустой';
+      navigator.clipboard.writeText(text).then(() => showMessage('Список скопирован в буфер обмена.', 'ok')).catch(()=> showMessage('Не удалось скопировать список.', 'error'));
+    });
+
+    document.getElementById('exportList').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(wishes, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'wishlist.json'; a.click();
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById('importBtn').addEventListener('click', async () => {
+      // open file picker
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'application/json';
+      input.onchange = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const data = JSON.parse(text);
+          if (!Array.isArray(data)) throw new Error('Некорректный формат');
+          wishes = data.concat(wishes);
+          saveLocal();
+          renderList();
+          showMessage('Импорт выполнен', 'ok');
+        } catch {
+          showMessage('Ошибка при импорте', 'error');
+        }
+      };
+      input.click();
+    });
+
+    /* ====== Supabase helpers (as before) ====== */
+    function initSupabase() {
+      const url = supabaseUrl.value.trim();
+      const key = supabaseKey.value.trim();
+      if (!url || !key) {
+        syncStatus.textContent = 'Статус: локально / без облака';
+        supabaseClient = null;
+        return;
+      }
+      try {
+        supabaseClient = window.supabase.createClient(url, key);
+        syncStatus.textContent = 'Статус: подключение готово, можно синхронизировать';
+      } catch {
+        syncStatus.textContent = 'Статус: неверные настройки Supabase';
+        supabaseClient = null;
+      }
+    }
+
+    async function syncToSupabase() {
+      if (!supabaseClient) return;
+      const payload = wishes.map(item => ({
+        id: item.id || crypto.randomUUID?.() || String(Date.now() + Math.random()),
+        name: item.name,
+        type: item.type,
+        note: item.note,
+        game: item.game || '',
+        price: item.price,
+        moneyMethod: item.moneyMethod || 'cash',
+        created_at: item.createdAt || new Date().toISOString()
+      }));
+      try {
+        const { error } = await supabaseClient.from('wishes').upsert(payload, { onConflict: 'id' });
+        if (error) throw error;
+        syncStatus.textContent = 'Статус: синхронизация с облаком выполнена';
+      } catch {
+        syncStatus.textContent = 'Статус: ошибка синхронизации, проверьте таблицу wishes';
+      }
+    }
+
+    async function pullFromSupabase() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient.from('wishes').select('*').order('created_at', { ascending: false });
+        if (error) throw error;
+        if (Array.isArray(data) && data.length) {
+          wishes = data.map(item => ({
+            id: item.id,
+            type: item.type || 'other',
+            name: item.name || 'Без названия',
+            note: item.note || '',
+            game: item.game || '',
+            price: item.price === null || item.price === undefined ? null : Number(item.price),
+            moneyMethod: item.moneyMethod || 'cash',
+            createdAt: item.created_at || new Date().toISOString()
+          }));
+          saveLocal();
+          renderList();
+          syncStatus.textContent = 'Статус: данные загружены из Supabase';
+        } else {
+          syncStatus.textContent = 'Статус: в облаке пока нет записей';
+        }
+      } catch {
+        syncStatus.textContent = 'Статус: не удалось получить данные из Supabase';
+      }
+    }
+
+    document.getElementById('enableSync').addEventListener('click', () => {
+      initSupabase();
+      if (supabaseClient) syncToSupabase();
+    });
+    document.getElementById('pullSync').addEventListener('click', () => {
+      initSupabase();
+      if (supabaseClient) pullFromSupabase();
+    });
+
+    /* ====== Countdown & chest ====== */
+    function countDownBirthday() {
+      const now = new Date();
+      const diff = BIRTHDAY_TARGET.getTime() - now.getTime();
+      if (diff <= 0) {
+        daysEl.textContent = '0'; hoursEl.textContent='00'; minsEl.textContent='00'; secsEl.textContent='00';
+        return;
+      }
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const mins = Math.floor((totalSeconds % 3600) / 60);
+      const secs = totalSeconds % 60;
+      daysEl.textContent = String(days);
+      hoursEl.textContent = String(hours).padStart(2,'0');
+      minsEl.textContent = String(mins).padStart(2,'0');
+      secsEl.textContent = String(secs).padStart(2,'0');
+    }
+
+    function openChestAnimation() {
+      chestLid.style.transform = 'rotateX(-120deg)';
+      launchConfetti();
+      const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
+      audio.play().catch(() => {});
+      overlay.classList.add('hidden');
+    }
+
+    function launchConfetti() {
+      const canvas = document.getElementById('confetti');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const pieces = [];
+      for (let i=0;i<150;i++){
+        pieces.push({
+          x: Math.random()*canvas.width,
+          y: Math.random()*canvas.height - canvas.height,
+          size: Math.random()*7+4,
+          color: ['#f5b93d','#ff7ab6','#7ab8ff','#ffd76a','#4dbb8e'][Math.floor(Math.random()*5)],
+          speed: Math.random()*2.8+1.8,
+          angle: Math.random()*360,
+          spinning: (Math.random()-0.5)*10
+        });
+      }
+      let frame = 0;
+      function draw(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        pieces.forEach(p=>{
+          ctx.save();
+          ctx.translate(p.x,p.y);
+          ctx.rotate((p.angle*Math.PI)/180);
+          ctx.fillStyle=p.color;
+          ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*1.8);
+          ctx.restore();
+          p.y+=p.speed; p.angle+=p.spinning;
+          if (p.y>canvas.height) p.y=-10;
+        });
+        frame++;
+        if (frame<240) requestAnimationFrame(draw); else ctx.clearRect(0,0,canvas.width,canvas.height);
+      }
+      draw();
+    }
+
+    /* ====== Form handling ====== */
+    typeEl.addEventListener('change', () => {
+      gameFields.style.display = typeEl.value === 'games' ? 'block' : 'none';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = nameEl.value.trim();
+      if (!name) { showMessage('Напиши, какой подарок ты хочешь.', 'error'); return; }
+      const priceVal = priceEl.value.trim();
+      const price = priceVal === '' ? null : Number(priceVal);
+      if (price !== null && (!Number.isFinite(price) || price < 0)) { showMessage('Проверь цену подарка.', 'error'); return; }
+
+      wishes.unshift({
+        id: crypto.randomUUID?.() || String(Date.now() + Math.random()),
+        type: typeEl.value,
+        name,
+        note: noteEl.value.trim(),
+        game: gameEl.value.trim(),
+        price,
+        moneyMethod: document.querySelector('input[name="moneyMethod"]:checked').value,
+        createdAt: new Date().toISOString()
+      });
+
+      saveLocal(); renderList();
+      form.reset(); typeEl.value='clothes'; gameFields.style.display='none';
+      showMessage('Желание добавлено! Надеюсь, мечта сбудется 🎉', 'ok');
+
+      // sound
+      const audio = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
+      audio.play().catch(()=>{});
+      if (autoWa.checked) {
+        const text = wishes.length ? wishes.map((w,i)=>`${i+1}. ${w.name}${w.price? ' — ' + money(w.price):''}${w.note? ' | ' + w.note:''}`).join('\n') : 'Пока список пуст';
+        const encoded = encodeURIComponent('Подарок для Кемеңгера\n\n' + text + '\n\nС любовью, от брата ❤️');
+        window.open(`https://wa.me/${PARENT_PHONE}?text=${encoded}`, '_blank');
+      }
+
+      if (supabaseClient) syncToSupabase();
+    });
+
+    /* ====== Init ====== */
+    loadLocal();
+    renderList();
+    countDownBirthday();
+    setInterval(countDownBirthday, 1000);
+    openChestBtn.addEventListener('click', openChestAnimation);
+
+    // Share modal close on outside click
+    document.addEventListener('click', (e) => {
+      if (!shareModal) return;
+      if (shareModal.style.display === 'block') {
+        const modalBox = document.querySelector('.share-modal');
+        if (modalBox && !modalBox.contains(e.target) && e.target !== genLinkBtn) {
+          closeShareModal();
+        }
+      }
+    });
+
+    // handle incoming share param on load
+    handleIncomingShare();
+
+    // when page loads, if share modal opened earlier, remove param to avoid repeated preview
+    if (location.search.indexOf('share=') === -1) {
+      // nothing
+    }
+
+    // init supabase if values exist in inputs
+    if (supabaseUrl.value.trim() && supabaseKey.value.trim()) {
+      initSupabase();
+    }
+  </script>
+</body>
+</html>
